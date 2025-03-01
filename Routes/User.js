@@ -3,13 +3,14 @@ const router = express.Router();
 const User = require('../Schema/User');
 
 router.post('/register', async (req, res) => {
-    const {name,email} = req.body;
+    const {name,email,age} = req.body;
     const user = new User({
         name,
-        email
+        email,
+        age
     });
     await user.save();
-    res.json({message: 'User registered successfully'});
+    res.json(user);
 })
 
 router.get('/get', async (req, res) => {
