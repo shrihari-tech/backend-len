@@ -6,6 +6,9 @@ const task = require('./Routes/Task');
 const book = require('./Routes/Book');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const env = require('dotenv');
+env.config();
+
 const cors = require('cors');
 app.use(cors());
 
@@ -26,5 +29,7 @@ app.get('/',(req,res)=>{
 })
 
 
-mongoose.connect('mongodb://localhost:27017/backend',)
+// mongoose.connect('mongodb://localhost:27017/backend',)
+
+mongoose.connect(process.env.MONGO_URI,)
 .then(()=>console.log('Connected to MongoDB'))
