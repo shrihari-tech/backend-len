@@ -7,10 +7,32 @@ const book = require('./Routes/Book');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const env = require('dotenv');
+
+const corsOption = {
+    origin: function(origin, callback) {
+        const allowedOrigins = [
+            'https://backend-len.vercel.app'
+        ];
+        
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+};
 env.config();
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors(corsOption));
 
 
 app.use(bodyParser.json());

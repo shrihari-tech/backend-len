@@ -11,7 +11,7 @@ const Home = () => {
         try{
             e.preventDefault();
             const user = {name,email,age};
-            const response = await axios.post("http://localhost:5000/user/register",user);
+            const response = await axios.post("https://backend-len.vercel.app/user/register",user);
             console.log(response.data);
             window.alert('User added successfully');
             setName('');
@@ -25,7 +25,7 @@ const Home = () => {
 
     const fetchUser = async()=>{
         try{
-            const response = await axios.get('http://localhost:5000/user/get');
+            const response = await axios.get('https://backend-len.vercel.app/user/get');
             setUsers(response.data);
         }
         catch(err){
