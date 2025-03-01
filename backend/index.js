@@ -11,7 +11,8 @@ const env = require('dotenv');
 const corsOption = {
     origin: function(origin, callback) {
         const allowedOrigins = [
-            'https://backend-len.vercel.app'
+            'https://backend-len.vercel.app',
+            'https://backend-len-frontend.vercel.app'
         ];
         
         // Allow requests with no origin (like mobile apps or curl requests)
